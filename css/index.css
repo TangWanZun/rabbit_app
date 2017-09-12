@@ -1,3 +1,6 @@
+.mui-iframe-wrapper{
+	z-index: 999999999;
+}
 body {
 	width: 100vw;
 	height: 100vh;
@@ -95,34 +98,64 @@ body {
 	overflow: hidden;
 }
 .lat{
+	position: relative;
+	top: 0px;
+	left: 0px;
 	width: 20%;
 	height: 100%;
 	float: left;
 }
 .lat1{
+	width: 30%;
 	/*background-color: red;*/
+	
 }
 .lat2{
 	/*background-color: blue;*/
+	width: 10%;
 }
 .lat3{
 	/*background-color: green;*/
-	position: relative;
-	top: 0px;
-	left: 0px;
 }
 .lat4{
 	/*background-color: yellow;*/
+	width: 10%;
 }
 .lat5{
 	/*background-color: pink;*/
+	width: 30%;
 }
 .paly{
 	position: absolute;
-	margin-top:-50%;
-	top: 50%;	
-	width: 20vw;
-	height: 20vw;
+	top: 10px;
+	left: calc( 10vw - 40px );
+	width: 80px;
+	height: 80px;
 	background-image: url(../image/audioPlay.png);
 	background-size: 99%;
+}
+.qiege-break{
+	position: absolute;
+	width: 35px;
+	height: 39px;
+	top: 35px;
+	left: calc( 15vw - 15px );
+	background-repeat: no-repeat;
+	background-image:url(../image/xiege.png);
+	background-size:99%;
+}
+.qiege-next{
+	position: absolute;
+	width: 35px;
+	height: 39px;
+	top: 35px;
+	right: calc( 15vw - 15px );
+	background-repeat: no-repeat;
+	background-image:url(../image/xiege.png);
+	background-size:99%;
+	transform: rotate(180deg);
+	-ms-transform: rotate(180deg);             /* IE 9 */
+	-webkit-transform: rotate(180deg);      /* Safari and Chrome */
+	-o-transform: rotate(180deg);              /* Opera */
+	-moz-transform: rotate(180deg);         /* Firefox */
 }
