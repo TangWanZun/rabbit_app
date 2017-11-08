@@ -1,5 +1,67 @@
 body{
 	width: 100vw;
 	height: 100vh;
-	background-color:rgba(100,100,100,1) ;
+	background-color:rgba(100,100,100,0);
+}
+.mui-slider{
+	height: 100vh;	
+}
+/*歌曲详细*/
+.audio-cover{
+	width: 70vw;
+	height: 70vw;
+	/*background-color: red;*/
+	margin: 0 auto;
+	margin-top: 20px;
+	position: relative;
+	right: 5vw;
+	background-image: url(../ceshi.png);
+	background-size:100%;
+}
+.audio-cover:before{
+	content: "";
+	display: block;
+	position: absolute;
+	width: calc( 70vw + 10px );
+	height: calc( 70vw + 10px );
+	border: 1px solid white;
+	top: -5px;
+	left: -5px;
+	z-index: -2;
+}
+.audio-cover:after{
+	width: 70vw;
+	height: 70vw;
+	content: "";
+	display: block;
+	position: absolute;
+	border-radius: 70vw;
+	/*border: 1px solid white;*/
+	background-color: rgb(224,224,224);
+	top: 0px;
+	left: 10vw;
+	z-index: -1;
+}
+.audio-box{
+	width: 15vw;
+	height: 15vw;
+	background-color: rgb(224,224,224);
+	border-radius: 10vw;
+	position: absolute;
+	left: 65vw;
+	top:27.5vw;
+}
+.audio-content{
+	width: 100%;
+	margin-top: 20px;
+	
+}
+.audio-icon{
+	width: 1005;
+	height: 10vh;
+	color: white;
+	font-family: "幼圆";
+	font-size: 5vh;
+	text-align: center;
+	line-height: 10vh;
 }

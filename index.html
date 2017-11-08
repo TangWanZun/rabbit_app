@@ -14,53 +14,38 @@
       			id:'main.html',
       			styles:{
       				top:'70px',
-      				bottom:'100px'
+      				bottom:'120px'
       			}
       		}]
       	});
     </script>
 </head>
 <body>
-	<!-- 侧滑导航根容器 -->
-	<div class="mui-off-canvas-wrap mui-draggable">
-		<!-- 菜单容器 -->
-		<aside class="mui-off-canvas-left">
-			<div class="mui-scroll-wrapper">
-				<div class="mui-scroll">
-					<!-- 菜单具体展示内容 -->
-					...
-				</div>
-			</div>
-		</aside>
-		<!-- 主页面容器 -->
-		<div class="mui-inner-wrap">
-			<!-- 主页面标题 -->
-			<header class="mui-bar mui-bar-nav">
-				<a class="mui-icon mui-action-menu mui-icon-bars mui-pull-left"></a>
-				<h1 class="mui-title">标题</h1>
-			</header>
-			<div class="mui-content mui-scroll-wrapper">
-				<div class="mui-scroll">
-					<!-- 主界面具体展示内容 -->
-					...
-				</div>
-			</div>
-		</div>
-	</div>
 	<div class="bck-box">
 		<div class="bck">
 			<div class="bck-in"></div>
 		</div>
 		<div class="masked"></div>
 	</div>
+	<div class="gedan-bck" id="gedanBck" style="display: none;"></div>
+	<div class="gedan" id="gedan">
+		<div class="gedan-top">
+			<div class="log"></div>
+			<div class="logname">兔子只吃胡萝卜</div>
+		</div>
+		<div></div>
+	</div>
 	<div class="toptitle-box">
 		<div class="toptitle">
-			<div class="audios"></div>
+			<div class="audios" id="gedanOpen"></div>
 			<div class="audio-title">方圆几里</div>
 			<div class="inquire"></div>
 		</div>
 	</div>
 	<div class="bottom-title-box">
+		<div class="audioRange-box">
+			<div class="audioRange-time">00:00</div><input type="range" class="audioRange" id="range"><div class="audioRange-time">00:00</div>
+		</div>
 		<div class="lat lat1">
 			<div class="qiege-break"></div>
 		</div>
@@ -75,4 +60,18 @@
 		<div></div>
 	</div>
 </body>
+<script type="text/javascript">
+	var gedanOpen = document.getElementById("gedanOpen");
+	var gedan = document.getElementById("gedan");
+	var gedanBck = document.getElementById("gedanBck");
+	gedanOpen.addEventListener("click",function(e){
+		gedanBck.style.display = "block";
+		gedan.classList.toggle('open'); 
+		e.stopPropagation();
+	});
+	gedanBck.addEventListener("click",function(){
+		gedan.classList.remove("open");
+		gedanBck.style.display = "none";
+	});
+</script>
 </html>

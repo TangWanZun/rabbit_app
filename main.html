@@ -5,7 +5,39 @@
 		<title></title>
 		<link rel="stylesheet" href="css/mui.min.css" />
 		<link rel="stylesheet" href="css/main.css" />
+		<script type="text/javascript" src="js/mui.min.js" ></script>
 	</head>
+	<script type="text/javascript">
+		mui('.mui-scroll-wrapper').scroll({ 
+			scrollY: false, //是否竖向滚动 
+			scrollX: true, //是否横向滚动 
+			startX: 0, //初始化时滚动至x 
+			startY: 0, //初始化时滚动至y 
+			indicators: true, //是否显示滚动条 
+			deceleration:0.0006, //阻尼系数,系数越小滑动越灵敏 
+			bounce: true //是否启用回弹
+		});
+	</script>
 	<body>
+		<div class="mui-slider">
+			<div class="mui-slider-group">
+				<!--第一个内容区容器-->
+				<div class="mui-slider-item">
+					<div class="audio-cover">
+						<div class="audio-box">
+						</div>
+					</div>
+					<div class="audio-content">
+						<div class="audio-icon">方圆几里</div>
+						<div class="audio-icon">专辑：方圆几里</div>
+						<div class="audio-icon">薛之谦</div>
+					</div>
+				</div>
+				<!--第二个内容区-->
+				<div class="mui-slider-item">
+					123123
+				</div>
+			</div>
+		</div>
 	</body>
 </html>
