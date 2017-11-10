@@ -57,11 +57,58 @@ body{
 	
 }
 .audio-icon{
-	width: 1005;
+	width: 100%;
 	height: 10vh;
 	color: white;
 	font-family: "幼圆";
 	font-size: 5vh;
 	text-align: center;
 	line-height: 10vh;
+}
+/*歌单*/
+.audioList-box{
+	width: calc( 100% - 10px );
+	height: 80px;
+	border-bottom: 1px solid rgba(255,255,255,255.5);
+	margin:0 5px;
+	position: relative;
+}
+.audioList-zx{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	font-size:45px;
+	color: white;
+	font-weight: bolder;
+}
+.audioList-name{
+	width: 100%;
+	height: 45px;
+	line-height: 45px;
+	font-size: 30px;
+	font-family: "幼圆";
+	padding-left: 15px;
+	color: white;
+}
+.audioList-bottom{
+	width: 100%;
+	height: 35px;
+	padding-left: 15px;
+	overflow: hidden;
+}
+.audioList-geshou{
+	float: left;
+	color: rgba(0,0,0,0.5);
+	height: 100%;
+	font-size: 25px;
+	line-height:35px;
+	color: white;
+}
+.audioList-time{
+	float: right;
+	color: rgba(0,0,0,0.5);
+	height: 100%;
+	font-size: 20px;
+	line-height:35px;
+	color: white;
 }

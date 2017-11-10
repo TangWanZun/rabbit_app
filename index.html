@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title></title>
     <script src="js/mui.min.js"></script>
+    <script type="text/javascript" src="js/config.js" ></script>
+    <script src="https://unpkg.com/vue"></script>
     <link href="css/mui.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="css/index.css" />
     <script type="text/javascript" charset="utf-8">
@@ -33,13 +35,26 @@
 			<div class="log"></div>
 			<div class="logname">兔子只吃胡萝卜</div>
 		</div>
-		<div></div>
+		<div id="audioList" class="audioList">
+			<div v-for="audio in audios" class="audioList-box">
+				<div class="audioList-name">{{audio.name}}</div>
+				<div class="audioList-bottom">
+					<div class="audioList-geshou">{{audio.geshou}}</div>
+					<div class="audioList-time">{{audio.time}}</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div class="toptitle-box">
+		<div class="inquire-box" id="inquire-box" style="display: none;;">
+			<div class="inquire-cha" onclick="inquireNone()"></div>
+			<input type="text" id="inquire-input"></input>
+			<div class="inquire-x" id="inquiry"></div>
+		</div>
 		<div class="toptitle">
 			<div class="audios" id="gedanOpen"></div>
 			<div class="audio-title">方圆几里</div>
-			<div class="inquire"></div>
+			<div class="inquire" onclick="inquireBox.style.display='block'"></div>
 		</div>
 	</div>
 	<div class="bottom-title-box">
@@ -73,5 +88,28 @@
 		gedan.classList.remove("open");
 		gedanBck.style.display = "none";
 	});
+	var inquireBox=document.getElementById("inquire-box");
+	function inquireNone(){
+		inquireBox.style.display = "none";
+	}
+	
+	
+	//vue
+	var v1 = new Vue({
+		el:"#audioList",
+		data:{
+			audios:[
+				{name:"晴天",geshou:"周杰伦",time:"3:14"},
+				{name:"止战之殇",geshou:"周杰伦",time:"3:14"},
+				{name:"告白气球",geshou:"周杰伦",time:"3:14"},
+				{name:"追梦赤子心",geshou:"GALA",time:"3:14"},
+				{name:"方圆几里",geshou:"薛之谦",time:"3:14"},
+				{name:"平凡之路",geshou:"朴树",time:"3:14"},
+				{name:"在人间",geshou:"王建房",time:"3:14"},
+				{name:"动物世界",geshou:"薛之谦",time:"3:14"}
+			]
+		}
+	});
 </script>
+<script type="text/javascript" src="js/audio.js" ></script>
 </html>
