@@ -6,7 +6,7 @@
 		<link rel="stylesheet" href="css/mui.min.css" />
 		<link rel="stylesheet" href="css/main.css" />
 		<script type="text/javascript" src="js/mui.min.js" ></script>
-    	<script src="https://unpkg.com/vue"></script>
+    	<script src="js/vue.js"></script>
 	</head>
 	<script type="text/javascript">
 		mui('.mui-scroll-wrapper').scroll({ 
@@ -50,15 +50,12 @@
 			</div>
 		</div>
 	</body>
+	<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
-		var vu = new Vue({
+		window.parent.AUDIO_LIST = new Vue({
 			el:"#gedan",
 			data:{
-				audios:[
-					{name:"晴天",geshou:"周杰伦",time:"3:14"},
-					{name:"晴天",geshou:"周杰伦",time:"3:14"},
-					{name:"晴天",geshou:"周杰伦",time:"3:14"}
-				]
+				audios:[]
 			}
 		});
 	</script>

@@ -1,5 +1,5 @@
-var AUDIO_LIST = null;  //当前查询歌曲集
-var AUDIO_ARR =  new Array();//添加歌曲集
+var AUDIO_LIST = null;  //当前查询歌曲vue组件集
+var AUDIO_ARR =  null;//添加歌曲集
 var AUDIO_INDEX = 0;//当前播放歌曲位置
 var AUDIO_ID = { //歌曲id
 	BFQ : document.getElementById("myaudio")  ,//播放器id

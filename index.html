@@ -6,20 +6,20 @@
     <title></title>
     <script src="js/mui.min.js"></script>
     <script type="text/javascript" src="js/config.js" ></script>
-    <script src="https://unpkg.com/vue"></script>
+    <script src="js/vue.js"></script>
     <link href="css/mui.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="css/index.css" />
     <script type="text/javascript" charset="utf-8">
-      	mui.init({
-      		subpages:[{
-      			url:'main.html',
-      			id:'main.html',
-      			styles:{
-      				top:'70px',
-      				bottom:'120px'
-      			}
-      		}]
-      	});
+//    	mui.init({
+//    		subpages:[{
+//    			url:'main.html',
+//    			id:'main',
+//    			styles:{
+//    				top:'70px',
+//    				bottom:'120px'
+//    			}
+//    		}]
+//    	});
     </script>
 </head>
 <body>
@@ -30,17 +30,17 @@
 		<div class="masked"></div>
 	</div>
 	<div class="gedan-bck" id="gedanBck" style="display: none;"></div>
-	<div class="gedan" id="gedan">
+	<div class="gedan-box" id="gedan-box">
 		<div class="gedan-top">
 			<div class="log"></div>
 			<div class="logname">兔子只吃胡萝卜</div>
 		</div>
 		<div id="audioList" class="audioList">
-			<div v-for="audio in audios" class="audioList-box">
-				<div class="audioList-name">{{audio.name}}</div>
-				<div class="audioList-bottom">
-					<div class="audioList-geshou">{{audio.geshou}}</div>
-					<div class="audioList-time">{{audio.time}}</div>
+			<div v-for="audio in audios" class="audioList-box-z">
+				<div class="audioList-name-z">{{audio.name}}</div>
+				<div class="audioList-bottom-z">
+					<div class="audioList-geshou-z">{{audio.geshou}}</div>
+					<div class="audioList-time-z">{{audio.time}}</div>
 				</div>
 			</div>
 		</div>
@@ -55,6 +55,37 @@
 			<div class="audios" id="gedanOpen"></div>
 			<div class="audio-title">方圆几里</div>
 			<div class="inquire" onclick="inquireBox.style.display='block'"></div>
+		</div>
+	</div>
+	<div class="main-box">
+		<div class="mui-slider">
+			<div class="mui-slider-group">
+				<!--第一个内容区容器-->
+				<div class="mui-slider-item">
+					<div class="audio-cover">
+						<div class="audio-box">
+						</div>
+					</div>
+					<div class="audio-content">
+						<div class="audio-icon">方圆几里</div>
+						<div class="audio-icon">专辑：方圆几里</div>
+						<div class="audio-icon">薛之谦</div>
+					</div>
+				</div>
+				<!--第二个内容区-->
+				<div class="mui-slider-item">
+					<div id="gedan" class="gedan">
+						<div v-for="(audio,index) in audios" @click="ground(index)"  class="audioList-box">
+							<div class="audioList-zx">:</div>
+							<div class="audioList-name">{{audio.name}}</div>
+							<div class="audioList-bottom">
+								<div class="audioList-geshou">{{audio.geshou}}</div>
+								<div class="audioList-time">{{audio.time}}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="bottom-title-box">
@@ -75,9 +106,10 @@
 		<div></div>
 	</div>
 </body>
+<script type="text/javascript" src="js/audio.js" ></script>
 <script type="text/javascript">
 	var gedanOpen = document.getElementById("gedanOpen");
-	var gedan = document.getElementById("gedan");
+	var gedan = document.getElementById("gedan-box");
 	var gedanBck = document.getElementById("gedanBck");
 	gedanOpen.addEventListener("click",function(e){
 		gedanBck.style.display = "block";
@@ -94,22 +126,26 @@
 	}
 	
 	
+	
+	AUDIO_LIST = new Vue({
+			el:"#gedan",
+			data:{
+				audios:[]
+			},
+			methods:{
+				ground:function(n){
+					audioAdd(n);
+				}
+			}
+		});
+	
 	//vue
-	var v1 = new Vue({
+	AUDIO_ARR = new Vue({
 		el:"#audioList",
 		data:{
 			audios:[
-				{name:"晴天",geshou:"周杰伦",time:"3:14"},
-				{name:"止战之殇",geshou:"周杰伦",time:"3:14"},
-				{name:"告白气球",geshou:"周杰伦",time:"3:14"},
-				{name:"追梦赤子心",geshou:"GALA",time:"3:14"},
-				{name:"方圆几里",geshou:"薛之谦",time:"3:14"},
-				{name:"平凡之路",geshou:"朴树",time:"3:14"},
-				{name:"在人间",geshou:"王建房",time:"3:14"},
-				{name:"动物世界",geshou:"薛之谦",time:"3:14"}
 			]
 		}
 	});
 </script>
-<script type="text/javascript" src="js/audio.js" ></script>
 </html>
