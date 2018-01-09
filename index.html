@@ -142,9 +142,9 @@
 					<div class="inquire-x" id="inquiry"></div>
 				</div>
 				<div class="toptitle">
-					<div class="audios" id="gedanOpen"></div>
+					<div class="audios" id="gedanOpen"><p class="mui-icon mui-icon-list toptitle_icon"></p></div>
 					<div class="audio-title">方圆几里</div>
-					<div class="inquire" @click="audioSearchShow(true)"></div>
+					<div class="inquire" @click="audioSearchShow(true)"><p class="mui-icon mui-icon-search toptitle_icon"></p></div>
 				</div>
 			</div>
 	
@@ -165,16 +165,16 @@
 						</div>
 						<!--第二个内容区-->
 						<div class="mui-slider-item">
-							<!--<div id="gedan" class="gedan">
-								<div v-for="(audio,index) in audios" @click="ground(index)"  class="audioList-box">
-									<div class="audioList-zx">:</div>
-									<div class="audioList-name">{{audio.name}}</div>
+							<div id="gedan" class="gedan">
+								<div v-for="(value,index) in menuList" @click="ground(index)"  class="audioList-box">
+									<div class="audioList-zx"><p class="mui-icon mui-icon-bars"></p></div>
+									<div class="audioList-name">{{value.name}}</div>
 									<div class="audioList-bottom">
-										<div class="audioList-geshou">{{audio.geshou}}</div>
-										<div class="audioList-time">{{audio.time}}</div>
+										<div class="audioList-geshou">{{value.geshou}}</div>
+										<div class="audioList-time">{{value.time}}</div>
 									</div>
 								</div>
-							</div>-->
+							</div>
 						</div>
 					</div>
 				</div>
@@ -202,7 +202,8 @@
 			<!--独立查询页面-->
 			<div class="audio_search_frame" v-show = "audioSearchList.length==0">
 				<input class="audio_search_frame_input" placeholder="输入搜索的歌曲或歌手" autofocus="autofocus" v-model="audioSearchContent"></input>
-				<div class="audio_search_frame_button" @click="audioSearchPlay">点击搜索</div>
+				<div class="audio_search_frame_button audio_search_frame_button_play" @click="audioSearchPlay">点击搜索</div>
+				<div class="audio_search_frame_button audio_search_frame_button_back" @click="audioSearchShow(false)">退出搜索</div>
 			</div>
 			<!--头部查询框-->
 			<div class="audio_search_frame_top_box" v-show = "audioSearchList.length!=0">
@@ -212,7 +213,7 @@
 			</div>
 			<!--查询歌曲的列表-->
 			<div class="audio_search_list">
-				<div v-for="(value,index) in audioSearchList" class="audioList-box">
+				<div v-for="(value,index) in audioSearchList" class="audioList-box" >
 					<div class="audioList-zx"><p class="mui-icon mui-icon-bars"></p></div>
 					<div class="audioList-name">{{value.name}}</div>
 					<div class="audioList-bottom">
@@ -234,7 +235,9 @@
 			//搜索框内容
 			audioSearchContent:"",
 			//搜索的歌曲列表
-			audioSearchList:[]
+			audioSearchList:[],
+			//歌库列表
+			menuList:[]
 		},
 		methods:{
 			//查询歌曲显示页面
