@@ -489,7 +489,7 @@ body {
 	border:0px;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 	position: absolute;
-	top: 30%;
+	top: 60px;
 	left: 50%;
 	width: 90%;
 	margin-left: -45%;
@@ -499,15 +499,15 @@ body {
 }
 .audio_search_frame_button{
 	width:90%;
-	height:8vh;
-	line-height:8vh;
+	height: 14vw;
+	line-height: 14vw;
 	position:absolute;
-	top:60%;
+	top: 120px;
 	left: 50%;
 	margin-left: -45%;
 	border-radius:1vw;
 	border:1px solid rgba(255,255,255,0.5);
-/* 	background-color:rgba(255,255,255,0.8); */
+	/* 	background-color:rgba(255,255,255,0.8); */
 	color:rgba(255,255,255,0.8);
 	text-align:center;
 	font-size:3vh;
