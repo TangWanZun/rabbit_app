@@ -23,129 +23,180 @@
     </script>
 </head>
 <body>
-	<div class="bck-box">
-		<div class="bck">
-			<div class="bck-in"></div>
-		</div>
-		<div class="masked"></div>
-	</div>
-	<div class="gedan-bck" id="gedanBck" style="display: none;"></div>
-	<div class="gedan-box" id="gedan-box">
-		<div class="gedan-top">
-			<div class="log"></div>
-			<div class="logname">兔子只吃胡萝卜</div>
-		</div>
-		<div id="audioList" class="audioList">
-			<div v-for="audio in audios" class="audioList-box-z">
-				<div class="audioList-name-z">{{audio.name}}</div>
-				<div class="audioList-bottom-z">
-					<div class="audioList-geshou-z">{{audio.geshou}}</div>
-					<div class="audioList-time-z">{{audio.time}}</div>
+	<div id="audio">
+		<div :class="{main_box_blur:audioSearch}">
+			<div class="bck-box">
+				<div class="bck">
+					<div class="bck-in"></div>
 				</div>
+				<div class="masked"></div>
 			</div>
-		</div>
-	</div>
-	<div class="toptitle-box">
-		<div class="inquire-box" id="inquire-box" style="display: none;;">
-			<div class="inquire-cha" onclick="inquireNone()"></div>
-			<input type="text" id="inquire-input"></input>
-			<div class="inquire-x" id="inquiry"></div>
-		</div>
-		<div class="toptitle">
-			<div class="audios" id="gedanOpen"></div>
-			<div class="audio-title">方圆几里</div>
-			<div class="inquire" onclick="inquireBox.style.display='block'"></div>
-		</div>
-	</div>
-	<div class="main-box">
-		<div class="mui-slider">
-			<div class="mui-slider-group">
-				<!--第一个内容区容器-->
-				<div class="mui-slider-item">
-					<div class="audio-cover">
-						<div class="audio-box">
+			<div class="gedan-bck" id="gedanBck" style="display: none;"></div>
+			<div class="gedan-box" id="gedan-box">
+				<div class="gedan-top">
+					<div class="log"></div>
+					<div class="logname">兔子只吃胡萝卜</div>
+				</div>
+				<!--<div id="audioList" class="audioList">
+					<div v-for="audio in audios" class="audioList-box-z">
+						<div class="audioList-name-z">{{audio.name}}</div>
+						<div class="audioList-bottom-z">
+							<div class="audioList-geshou-z">{{audio.geshou}}</div>
+							<div class="audioList-time-z">{{audio.time}}</div>
 						</div>
 					</div>
-					<div class="audio-content">
-						<div class="audio-icon">方圆几里</div>
-						<div class="audio-icon">专辑：方圆几里</div>
-						<div class="audio-icon">薛之谦</div>
-					</div>
+				</div>-->
+			</div>
+			<div class="toptitle-box">
+				<div class="inquire-box" id="inquire-box" style="display: none;">
+					<div class="inquire-cha" onclick="inquireNone()"></div>
+					<input type="text" id="inquire-input"></input>
+					<div class="inquire-x" id="inquiry"></div>
 				</div>
-				<!--第二个内容区-->
-				<div class="mui-slider-item">
-					<div id="gedan" class="gedan">
-						<div v-for="(audio,index) in audios" @click="ground(index)"  class="audioList-box">
-							<div class="audioList-zx">:</div>
-							<div class="audioList-name">{{audio.name}}</div>
-							<div class="audioList-bottom">
-								<div class="audioList-geshou">{{audio.geshou}}</div>
-								<div class="audioList-time">{{audio.time}}</div>
+				<div class="toptitle">
+					<div class="audios" id="gedanOpen"></div>
+					<div class="audio-title">方圆几里</div>
+					<div class="inquire" @click="audioSearchShow(true)"></div>
+				</div>
+			</div>
+	
+			<div class="main_box">
+				<div class="mui-slider">
+					<div class="mui-slider-group">
+						<!--第一个内容区容器-->
+						<div class="mui-slider-item">
+							<div class="audio-cover">
+								<div class="audio-box">
+								</div>
+							</div>
+							<div class="audio-content">
+								<div class="audio-icon">方圆几里</div>
+								<div class="audio-icon">专辑：方圆几里</div>
+								<div class="audio-icon">薛之谦</div>
 							</div>
 						</div>
+						<!--第二个内容区-->
+						<div class="mui-slider-item">
+							<!--<div id="gedan" class="gedan">
+								<div v-for="(audio,index) in audios" @click="ground(index)"  class="audioList-box">
+									<div class="audioList-zx">:</div>
+									<div class="audioList-name">{{audio.name}}</div>
+									<div class="audioList-bottom">
+										<div class="audioList-geshou">{{audio.geshou}}</div>
+										<div class="audioList-time">{{audio.time}}</div>
+									</div>
+								</div>
+							</div>-->
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="bottom-title-box">
+				<div class="audioRange-box">
+					<div class="audioRange-time">00:00</div><input type="range" class="audioRange" id="range"><div class="audioRange-time">00:00</div>
+				</div>
+				<div class="lat lat1">
+					<div class="qiege-break"></div>
+				</div>
+				<div class="lat lat2"></div>
+				<div class="lat lat3">
+					<div class="paly"></div>
+				</div>
+				<div class="lat lat4"></div>
+				<div class="lat lat5">
+					<div class="qiege-next"></div>
+				</div>
+				<div></div>
+			</div>
+		</div>
+		<!--歌曲查询页面-->
+		<div class="audio-search-box" v-show="audioSearch">
+			<!--独立查询页面-->
+			<div class="audio_search_frame" v-show = "audioSearchList.length==0">
+				<input class="audio_search_frame_input" placeholder="输入搜索的歌曲或歌手" autofocus="autofocus" v-model="audioSearchContent"></input>
+				<div class="audio_search_frame_button" @click="audioSearchPlay">点击搜索</div>
+			</div>
+			<!--头部查询框-->
+			<div class="audio_search_frame_top_box" v-show = "audioSearchList.length!=0">
+				<div class="audio_search_frame_top_balck" @click="audioSearchShow(false)"><p class="mui-icon mui-icon-back"></p></div>
+				<input v-model="audioSearchContent" class="audio_search_frame_top" placeholder="输入搜索的歌曲或歌手"></input>
+				<div class="audio_search_frame_top_inquire" @click="audioSearchPlay"><p class="mui-icon mui-icon-search" ></p></div>
+			</div>
+			<!--查询歌曲的列表-->
+			<div class="audio_search_list">
+				<div v-for="(value,index) in audioSearchList" class="audioList-box">
+					<div class="audioList-zx"><p class="mui-icon mui-icon-bars"></p></div>
+					<div class="audioList-name">{{value.name}}</div>
+					<div class="audioList-bottom">
+						<div class="audioList-geshou">{{value.geshou}}</div>
+						<div class="audioList-time">{{value.time}}</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="bottom-title-box">
-		<div class="audioRange-box">
-			<div class="audioRange-time">00:00</div><input type="range" class="audioRange" id="range"><div class="audioRange-time">00:00</div>
-		</div>
-		<div class="lat lat1">
-			<div class="qiege-break"></div>
-		</div>
-		<div class="lat lat2"></div>
-		<div class="lat lat3">
-			<div class="paly"></div>
-		</div>
-		<div class="lat lat4"></div>
-		<div class="lat lat5">
-			<div class="qiege-next"></div>
-		</div>
-		<div></div>
 	</div>
 </body>
 <script type="text/javascript" src="js/audio.js" ></script>
 <script type="text/javascript">
-	var gedanOpen = document.getElementById("gedanOpen");
-	var gedan = document.getElementById("gedan-box");
-	var gedanBck = document.getElementById("gedanBck");
-	gedanOpen.addEventListener("click",function(e){
-		gedanBck.style.display = "block";
-		gedan.classList.toggle('open'); 
-		e.stopPropagation();
-	});
-	gedanBck.addEventListener("click",function(){
-		gedan.classList.remove("open");
-		gedanBck.style.display = "none";
-	});
-	var inquireBox=document.getElementById("inquire-box");
-	function inquireNone(){
-		inquireBox.style.display = "none";
-	}
-	
-	
-	
-	AUDIO_LIST = new Vue({
-			el:"#gedan",
-			data:{
-				audios:[]
+	AUDIO = new Vue({
+		el:"#audio",
+		data:{
+			//查询歌曲显示页
+			audioSearch:true,
+			//搜索框内容
+			audioSearchContent:"",
+			//搜索的歌曲列表
+			audioSearchList:[]
+		},
+		methods:{
+			//查询歌曲显示页面
+			audioSearchShow:function(bool){
+				this.audioSearch = bool;
 			},
-			methods:{
-				ground:function(n){
-					audioAdd(n);
+			//搜索点击按钮
+			audioSearchPlay:function(){
+				//当搜索框里不为空时进行的操作
+				if(this.audioSearchContent.replace(/(^s*)|(s*$)/g, "").length !=0){
+					searchAudio(this.audioSearchContent);
 				}
 			}
-		});
-	
-	//vue
-	AUDIO_ARR = new Vue({
-		el:"#audioList",
-		data:{
-			audios:[
-			]
 		}
 	});
+//	var gedanOpen = document.getElementById("gedanOpen");
+//	var gedan = document.getElementById("gedan-box");
+//	var gedanBck = document.getElementById("gedanBck");
+//	gedanOpen.addEventListener("click",function(e){
+//		gedanBck.style.display = "block";
+//		gedan.classList.toggle('open'); 
+//		e.stopPropagation();
+//	});
+//	gedanBck.addEventListener("click",function(){
+//		gedan.classList.remove("open");
+//		gedanBck.style.display = "none";
+//	});
+//	var inquireBox=document.getElementById("inquire-box");
+//	function inquireNone(){
+//		inquireBox.style.display = "none";
+//	}
+//	AUDIO_LIST = new Vue({
+//			el:"#gedan",
+//			data:{
+//				audios:[]
+//			},
+//			methods:{
+//				ground:function(n){
+//					audioAdd(n);
+//				}
+//			}
+//		});
+	
+	//vue
+//	AUDIO_ARR = new Vue({
+//		el:"#audioList",
+//		data:{
+//			audios:[
+//			]
+//		}
+//	});
 </script>
 </html>

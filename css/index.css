@@ -1,3 +1,6 @@
+*{
+	font-family:"幼圆","宋体","楷体";
+}
 .mui-iframe-wrapper{
 	z-index: 8;
 }
@@ -91,7 +94,6 @@ body {
 	height: 100%;
 	line-height: 130px;
 	/*margin-right: ;*/
-	font-family: "幼圆";
 	font-size: 25px;
 	color: white;
 	margin-left: 15px;
@@ -113,7 +115,6 @@ body {
 	height: 45px;
 	line-height: 45px;
 	font-size: 30px;
-	font-family: "幼圆";
 	padding-left: 15px;
 }
 .audioList-bottom-z{
@@ -176,10 +177,9 @@ body {
 	width:100%;
 	margin: 0 auto;
 	line-height: 70px;
-	font-family: "幼圆";
 	text-align: center;
 	color: white;
-	font-size: 35px;
+	font-size: 25px;
 }
 /*查询框*/
 .inquire-box{
@@ -310,7 +310,7 @@ body {
 	-moz-transform: rotate(180deg);         /* Firefox */
 }
 /*主页面*/
-.main-box{
+.main_box{
 	z-index: 99;
 	position: fixed;
 	width: 100vw;
@@ -318,6 +318,12 @@ body {
 	/*background-color: red;*/
 	top: 70px;
 	left: 0px;
+}
+.main_box_blur{
+	-webkit-filter: blur(15px);
+	-moz-filter: blur(15px);
+	-ms-filter: blur(15px);
+	filter: blur(15px);
 }
 .mui-slider {
 	height: 100%;
@@ -383,8 +389,7 @@ body {
 	width: 100%;
 	height: 10vh;
 	color: white;
-	font-family: "幼圆";
-	font-size: 5vh;
+	font-size: 3.5vh;
 	text-align: center;
 	line-height: 10vh;
 }
@@ -400,54 +405,169 @@ body {
 
 .audioList-box {
 	width: calc( 100% - 10px);
-	height: 80px;
-	border-bottom: 1px solid rgba(255, 255, 255, 255.5);
+	height: 64px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 	margin: 0 5px;
 	position: relative;
 }
 
 .audioList-zx {
 	position: absolute;
-	top: 10px;
+	top: 0px;
 	right: 10px;
-	font-size: 45px;
+	font-size: 46px;
 	color: white;
 	font-weight: bolder;
 }
 
 .audioList-name {
 	width: 100%;
-	height: 45px;
-	line-height: 45px;
-	font-size: 30px;
-	font-family: "幼圆";
+	height: 30px;
+	line-height: 30px;
+	font-size: 20px;
 	padding-left: 15px;
 	color: white;
 }
 
 .audioList-bottom {
 	width: 100%;
-	height: 35px;
+	height: 30px;
 	padding-left: 15px;
 	overflow: hidden;
 }
 
 .audioList-geshou {
 	float: left;
-	color: rgba(0, 0, 0, 0.5);
+	color: rgba(255, 255, 255, 0.5);
 	height: 100%;
-	font-size: 25px;
+	font-size: 15px;
 	line-height: 35px;
-	color: white;
 }
 
 .audioList-time {
 	float: right;
-	color: rgba(0, 0, 0, 0.5);
+	color: rgba(255, 255, 255, 0.5);
 	height: 100%;
-	font-size: 20px;
+	font-size: 15px;
 	line-height: 35px;
+}
+/*歌曲搜索页*/
+@keyframes audioSearchShow{
+	from{opacity: 0;}
+	to{opacity: 1;}
+}
+.audio-search-box{
+	width:100vw;
+	height:100vh;
+	background-color: rgba(0, 0, 0, 0.5);
+	position:fixed;
+	z-index:999;
+	top:0px;
+	left:0px;
+	animation: 300ms audioSearchShow;
+}
+/*搜索框*/
+.audio_search_frame{
+	width:100vw;
+	height:30vh;
+	margin-top:-15vh;
+	position:absolute;
+	left:0px;
+	top:50%;
+}
+.audio_search_frame:before{
+	content:"歌曲搜索";
+	display:block;
+	color:white;
+	position:absolute;
+	font-size:4vh;
+	top:0px;
+	left:10%;
+}
+.audio_search_frame>input{
+	background-color:rgba(0,0,0,0);
+	border:0px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+	position: absolute;
+	top: 30%;
+	left: 50%;
+	width: 90%;
+	margin-left: -45%;
+	padding-bottom: 10px;
 	color: white;
+	font-size: 5vw;
+}
+.audio_search_frame_button{
+	width:90%;
+	height:8vh;
+	line-height:8vh;
+	position:absolute;
+	top:60%;
+	left: 50%;
+	margin-left: -45%;
+	border-radius:1vw;
+	border:1px solid rgba(255,255,255,0.5);
+/* 	background-color:rgba(255,255,255,0.8); */
+	color:rgba(255,255,255,0.8);
+	text-align:center;
+	font-size:3vh;
+}
+.audio_search_frame_button:active{
+	color:rgba(0,0,0,0.8);
+	background-color:rgba(255,255,255,0.5);
+	border:0px;
+}
+/*头部查询框*/
+.audio_search_frame_top_box{
+	display:flex;
+	width: 100vw;
+	height: 40px;
+	border-bottom:2px solid rgba(255, 255, 255, 0.2);
+	padding:5px 0;
+}
+.audio_search_frame_top_balck{
+	height:100%;
+	width:60px;
+	text-align: center;
+	line-height: 28px;
+}
+.audio_search_frame_top{
+	display:block;
+	height:100%;
+	background-color:rgba(255, 255, 255, 0.2);
+	border-radius:20px;
+	width:calc( 100% - 120px );
+	border: 0;
+	padding-left:20px;
+	color:rgba(255,255,255,0.8);
+}
+.audio_search_frame_top_inquire{
+	height:100%;
+	width:60px;
+	text-align: center;
+	line-height: 28px;
+}
+/*查询歌曲列表*/
+.audio_search_list{
+	width: 100vw;
+	height: calc( 100vh - 40px );
+	overflow: auto;
+}
+/* 输入框默认提示字体颜色 */
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: rgba(193, 193, 193, 0.5); opacity:1; 
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: rgba(193, 193, 193, 0.5);opacity:1;
+}
+
+input:-ms-input-placeholder{
+    color: rgba(193, 193, 193, 0.5);opacity:1;
+}
+
+input::-webkit-input-placeholder{
+    color: rgba(193, 193, 193, 0.5);opacity:1;
 }
 /*自定义进度条*/
 input[type="range"]{

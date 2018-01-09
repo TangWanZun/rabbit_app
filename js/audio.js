@@ -1,46 +1,29 @@
 //歌曲搜索
-function searchAudio(){
+function searchAudio(audioSearchContent){
 	var jsonp = document.createElement("script");
-	var url = "http://songsearch.kugou.com/song_search_v2?callback=audioListShow&keyword="+document.getElementById("inquire-input").value;
+	var url = "http://songsearch.kugou.com/song_search_v2?callback=audioListShow&keyword="+audioSearchContent;
 	jsonp.src = url;
 	jsonp.id = "jsonp";
 	document.body.appendChild(jsonp);
 }
-
-//function rabbit_1213(json){
-//	audioListShow(json);
-//}
-
-//searchAudio();
-document.getElementById("inquiry").onclick = searchAudio;
-
-
-//父元素的回调方法
+//歌曲搜索回调方法
 function audioListShow(json){
-//	console.log(json);
-	AUDIO_LIST.$data.audios.splice(0,AUDIO_LIST.$data.audios.length);
-//	window.parent.AUDIO_LIST = new Vue({
-//			el:"#gedan",
-//			data:{
-//				audios:[
-//					{name:"晴天",geshou:"周杰伦",time:"3:14"},
-//					{name:"晴天",geshou:"周杰伦",time:"3:14"},
-//					{name:"晴天",geshou:"周杰伦",time:"3:14"}
-//				]
-//			}
-//		});
-//		document.getElementById("audioList").innerHTML="";
-	for(var i = 0; i<json.data.lists.length;i++){
-	    createAudioList(json.data.lists[i],i+1);
+	//	清空列表
+	AUDIO.audioSearchList.splice(0,AUDIO.audioSearchList.length);
+	console.log(json);
+	//遍历循环添加数据
+	for(let i in json.data.lists){
+//	    createAudioList(json.data.lists[i],i+1);
+	    AUDIO.audioSearchList.push({
+	    	name:json.data.lists[i].SongName,
+	    	geshou:json.data.lists[i].SingerName,
+	    	time:json.data.lists[i].AlbumName
+	    });
 	}
 	document.body.removeChild(window.parent.document.getElementById("jsonp"));
 }
 function createAudioList(audioListViow,n){
-	AUDIO_LIST.$data.audios.push({name:audioListViow.SongName,geshou:audioListViow.SingerName,time:audioListViow.AlbumName});
-//	var node = document.createElement("div");
-//	node.className = "tr-into";
-//	node.innerHTML = '<div class="row row-0">'+n+'　</div><div class="row row-1">'+audioListViow.SongName+'</div><div  class="row row-2">'+audioListViow.SingerName+'</div><div  class="row row-2">'+audioListViow.AlbumName+'</div><div class="row row-3"><div class="audio-add" onclick="audioAdd('+n+')">+</div></div>';
-//	document.getElementById("audioList").appendChild(node);
+//	AUDIO.$data.audios.push({name:audioListViow.SongName,geshou:audioListViow.SingerName,time:audioListViow.AlbumName});
 }
 //歌曲添加
 function audioAdd(n){
