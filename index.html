@@ -92,30 +92,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title></title>
-    <script src="js/mui.min.js"></script>
-    <script type="text/javascript" src="js/config.js" ></script>
     <script src="js/vue.js"></script>
+    <script src="js/mui.min.js"></script>
     <link href="css/mui.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="css/index.css" />
-    <script type="text/javascript" charset="utf-8">
-//    	mui.init({
-//    		subpages:[{
-//    			url:'main.html',
-//    			id:'main',
-//    			styles:{
-//    				top:'70px',
-//    				bottom:'120px'
-//    			}
-//    		}]
-//    	});
-    </script>
 </head>
 <body>
 	<div id="audio">
 		<div :class="{main_box_blur:audioSearch}">
 			<div class="bck-box">
 				<div class="bck">
-					<div class="bck-in"></div>
+					<div class="bck-in" :style="{backgroundImage:'url('+newAudioData.img+')'}"></div>
 				</div>
 				<div class="masked"></div>
 			</div>
@@ -143,7 +130,7 @@
 				</div>
 				<div class="toptitle">
 					<div class="audios" id="gedanOpen"><p class="mui-icon mui-icon-list toptitle_icon"></p></div>
-					<div class="audio-title">方圆几里</div>
+					<div class="audio-title">{{newAudioData.song_name}}</div>
 					<div class="inquire" @click="audioSearchShow(true)"><p class="mui-icon mui-icon-search toptitle_icon"></p></div>
 				</div>
 			</div>
@@ -151,22 +138,10 @@
 			<div class="main_box">
 				<div class="mui-slider">
 					<div class="mui-slider-group">
-						<!--第一个内容区容器-->
-						<div class="mui-slider-item">
-							<div class="audio-cover">
-								<div class="audio-box">
-								</div>
-							</div>
-							<div class="audio-content">
-								<div class="audio-icon">方圆几里</div>
-								<div class="audio-icon">专辑：方圆几里</div>
-								<div class="audio-icon">薛之谦</div>
-							</div>
-						</div>
-						<!--第二个内容区-->
+						<!--歌单-->
 						<div class="mui-slider-item">
 							<div id="gedan" class="gedan">
-								<div v-for="(value,index) in menuList"  class="audioList-box">
+								<div v-for="(value,index) in menuList"  class="audioList-box" @click="audioPlay(index)">
 									<div class="audioList-zx"><p class="mui-icon mui-icon-bars"></p></div>
 									<div class="audioList-name">{{value.name}}</div>
 									<div class="audioList-bottom">
@@ -176,12 +151,30 @@
 								</div>
 							</div>
 						</div>
+						<!--主页-->
+						<div class="mui-slider-item">
+							<div class="audio-cover" :style="{backgroundImage:'url('+newAudioData.img+')'}">
+								<div class="audio-box">
+								</div>
+							</div>
+							<div class="audio-content">
+								<div class="audio-icon">{{newAudioData.song_name}}</div>
+								<div class="audio-icon">专辑：{{newAudioData.album_name}}</div>
+								<div class="audio-icon">{{newAudioData.author_name}}</div>
+							</div>
+						</div>
+						<!--歌词-->
+						<div class="mui-slider-item">
+							<div id="audioWord" class="audioWord">
+								<div class="audio_word_line" v-for="value in newAudioData.lyrics">{{value}}</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 			<div class="bottom-title-box">
 				<div class="audioRange-box">
-					<div class="audioRange-time">00:00</div><input type="range" class="audioRange" id="range"><div class="audioRange-time">00:00</div>
+					<div class="audioRange-time">00:00</div><input type="range" class="audioRange" id="range"><div class="audioRange-time">{{newAudioData.timelength}}</div>
 				</div>
 				<div class="lat lat1">
 					<div class="qiege-break"></div>
@@ -223,8 +216,11 @@
 				</div>
 			</div>
 		</div>
+		<audio :src="newAudioData.play_url" id="myaudio" autoplay="autoplay" ></audio>
 	</div>
 </body>
+<script type="text/javascript" src="js/config.js" ></script>
+<script type="text/javascript" src="js/main.js" ></script>
 <script type="text/javascript" src="js/audio.js" ></script>
 <script type="text/javascript">
 	AUDIO = new Vue({
@@ -237,7 +233,24 @@
 			//搜索的歌曲列表
 			audioSearchList:[],
 			//歌库列表
-			menuList:[]
+			menuList:[{
+				FileHash:"ECD8A1E7C8BD5AA2717A670C274C0C8E",
+				geshou:"薛之谦、毛不易",
+				name:"消愁 (Live)",
+				ime:"2018江苏卫视跨年演唱会"
+			}],
+			//当前播放歌曲的信息
+			newAudioData:{
+				song_name:"rabiitAudio",		//歌曲名称
+				author_name:"兔子只吃胡萝卜",			//歌手名称
+				album_name:"来自github",			//专辑名称
+				img:"./image/log.jpg",	//歌曲图片
+				lyrics:[],				//歌词
+				lyrics_time:[],				//歌词对应的时间
+				play_url:"",				//音乐路径
+				timelength:"00:00",			//音乐长度
+				audiolyrics:null,//歌词制作对象
+			}
 		},
 		methods:{
 			//查询歌曲显示页面
@@ -254,44 +267,25 @@
 			//添加歌曲到歌库
 			audioListAdd:function(index){
 				AudioOpera.audioAdd(index);
+			},
+			//播放歌曲进行的操作
+			audioPlay:function(index){
+				var data = JSON.parse((new ajax(HOST.HREF+this.menuList[index].FileHash)).data);
+				console.log(data);
+				//同步界面
+				this.newAudioData.song_name = data.data.song_name;
+				this.newAudioData.author_name = data.data.author_name;
+				this.newAudioData.album_name = data.data.album_name;
+				this.newAudioData.img = data.data.img;
+				this.newAudioData.audiolyrics=new Audio(data.data);
+				var lyricsArr = this.newAudioData.audiolyrics.getAudioWord();
+				this.newAudioData.lyrics = lyricsArr.lyrics;
+				this.newAudioData.lyrics_time = lyricsArr.lyrics_time;
+				this.newAudioData.play_url = data.data.play_url;
+				this.newAudioData.timelength = zhuanhua(data.data.timelength);
+				this.newAudioData.audiolyrics.synAudioWord();
 			}
 		}
 	});
-//	var gedanOpen = document.getElementById("gedanOpen");
-//	var gedan = document.getElementById("gedan-box");
-//	var gedanBck = document.getElementById("gedanBck");
-//	gedanOpen.addEventListener("click",function(e){
-//		gedanBck.style.display = "block";
-//		gedan.classList.toggle('open'); 
-//		e.stopPropagation();
-//	});
-//	gedanBck.addEventListener("click",function(){
-//		gedan.classList.remove("open");
-//		gedanBck.style.display = "none";
-//	});
-//	var inquireBox=document.getElementById("inquire-box");
-//	function inquireNone(){
-//		inquireBox.style.display = "none";
-//	}
-//	AUDIO_LIST = new Vue({
-//			el:"#gedan",
-//			data:{
-//				audios:[]
-//			},
-//			methods:{
-//				ground:function(n){
-//					audioAdd(n);
-//				}
-//			}
-//		});
-	
-	//vue
-//	AUDIO_ARR = new Vue({
-//		el:"#audioList",
-//		data:{
-//			audios:[
-//			]
-//		}
-//	});
 </script>
 </html>

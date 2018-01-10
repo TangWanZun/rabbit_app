@@ -28,7 +28,6 @@ body {
 .bck-in{
 	width: 100%;
 	height: 100%;
-	background-image: url(../ceshi.png);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position-x: 50%;
@@ -183,6 +182,10 @@ body {
 	text-align: center;
 	color: white;
 	font-size: 25px;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	padding:0px 55px;
 }
 /*查询框*/
 .inquire-box{
@@ -343,7 +346,6 @@ body {
 	margin-top: 20px;
 	position: relative;
 	right: 5vw;
-	background-image: url(../ceshi.png);
 	background-size: 100%;
 }
 
@@ -402,7 +404,7 @@ body {
 
 .gedan {
 	width: 100%;
-	height: 100vh;
+	height: calc( 100vh - 200px );
 	overflow: auto;
 }
 
@@ -569,6 +571,27 @@ body {
 	width: 100vw;
 	height: calc( 100vh - 40px );
 	overflow: auto;
+}
+/*歌词显示*/
+.audioWord{
+	width: 100%;
+	height: calc( 100vh - 200px );
+	overflow: auto;
+	border:1px solid;
+}
+.audio_word_line{
+	overflow: hidden;
+	/* 	text-overflow:ellipsis; */
+	white-space: nowrap;
+	width:100vw;
+	text-align:center;
+	color:rgba(255, 255, 255, 0.8);
+	font-size:20px;
+	height: 35px;
+	line-height: 35px;
+}
+.audio_word_line_show{
+	color:#007AFF;	
 }
 /* 输入框默认提示字体颜色 */
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */

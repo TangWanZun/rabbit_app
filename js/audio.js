@@ -16,7 +16,8 @@ var AudioOpera = {
 			AUDIO.audioSearchList.push({
 				name: json.data.lists[i].SongName,
 				geshou: json.data.lists[i].SingerName,
-				time: json.data.lists[i].AlbumName
+				time: json.data.lists[i].AlbumName,
+				FileHash:json.data.lists[i].FileHash
 			});
 		}
 		document.body.removeChild(window.parent.document.getElementById("jsonp"));

@@ -1,12 +1,10 @@
-var AUDIO_LIST = null;  //当前查询歌曲vue组件集
-var AUDIO_ARR =  null;//添加歌曲集
-var AUDIO_INDEX = 0;//当前播放歌曲位置
+var AUDIO = null;//vue组件
 var AUDIO_ID = { //歌曲id
 	BFQ : document.getElementById("myaudio")  ,//播放器id
 	RANGE : document.getElementById("range"),//进度条
-	WORD : document.getElementById("audioWord"),//歌词
 	PLAYING : document.getElementById("playing"),//播放按钮
-	ONTIME : document.getElementById("audioOnTime")
+	ONTIME : document.getElementById("audioOnTime"),
+	WORD:document.querySelector(".audio_word_line")
 };
 var USER = {//用户
 	NAME:"游客",
@@ -14,6 +12,24 @@ var USER = {//用户
 };
 var HOST = {
 //	HREF:"http://192.168.137.39:8080/rabbitAudio/"
-	HREF:"http://localhost/rabbit/"
+	HREF:"http://farm.yijianongchang.shop/Public/Test/game/lib/audioPlay.php?FileHash="
 }
-
+function ajax(file){
+	this.xml = new XMLHttpRequest();
+	var myxml = this.xml;
+	var my  = this;
+	this.xml.onreadystatechange = function(){
+		if(myxml.readyState==4){
+			my.data = myxml.responseText;
+		}
+	};
+	this.xml.open('get',file,false);
+	this.xml.send(null);
+};
+//毫秒换算
+function zhuanhua(hm){
+	hm = Math.floor(hm/1000);
+	var m = hm%60;
+	if(m<10) m  = "0"+m;
+	return Math.floor(hm/60)+":"+m;
+}
