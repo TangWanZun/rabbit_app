@@ -413,7 +413,10 @@ body {
 	margin: 0 5px;
 	position: relative;
 }
-
+.audioList-box:active{
+	transition:500ms;
+	background: rgba(255,255,255,0.3);
+}
 .audioList-zx {
 	position: absolute;
 	top: 0px;

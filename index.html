@@ -166,7 +166,7 @@
 						<!--第二个内容区-->
 						<div class="mui-slider-item">
 							<div id="gedan" class="gedan">
-								<div v-for="(value,index) in menuList" @click="ground(index)"  class="audioList-box">
+								<div v-for="(value,index) in menuList"  class="audioList-box">
 									<div class="audioList-zx"><p class="mui-icon mui-icon-bars"></p></div>
 									<div class="audioList-name">{{value.name}}</div>
 									<div class="audioList-bottom">
@@ -213,7 +213,7 @@
 			</div>
 			<!--查询歌曲的列表-->
 			<div class="audio_search_list">
-				<div v-for="(value,index) in audioSearchList" class="audioList-box" >
+				<div v-for="(value,index) in audioSearchList" class="audioList-box" @click="audioListAdd(index)">
 					<div class="audioList-zx"><p class="mui-icon mui-icon-bars"></p></div>
 					<div class="audioList-name">{{value.name}}</div>
 					<div class="audioList-bottom">
@@ -248,8 +248,12 @@
 			audioSearchPlay:function(){
 				//当搜索框里不为空时进行的操作
 				if(this.audioSearchContent.replace(/(^s*)|(s*$)/g, "").length !=0){
-					searchAudio(this.audioSearchContent);
+					AudioOpera.searchAudio(this.audioSearchContent);
 				}
+			},
+			//添加歌曲到歌库
+			audioListAdd:function(index){
+				AudioOpera.audioAdd(index);
 			}
 		}
 	});
