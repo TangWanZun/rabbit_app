@@ -13,7 +13,7 @@ var AudioOpera = {
 		AUDIO.audioSearchList.splice(0, AUDIO.audioSearchList.length);
 		console.log(json)
 		//遍历循环添加数据
-		for(let i in json.data.lists) {
+		for(var i in json.data.lists) {
 			AUDIO.audioSearchList.push({
 				name: json.data.lists[i].SongName,
 				geshou: json.data.lists[i].SingerName,
@@ -26,7 +26,7 @@ var AudioOpera = {
 	},
 	//歌曲添加
 	audioAdd:function(index){
-		for(let i in AUDIO.menuList){
+		for(var i in AUDIO.menuList){
 			if(AUDIO.audioSearchList[index].Audioid == 	AUDIO.menuList[i].Audioid){
 				mui.toast("歌单中存在此歌曲", {
 					duration: 'short',
@@ -82,7 +82,7 @@ function Audio(data) {
 		//播放开始
 		this.myaudio.oncanplay = function() {
 			thio.range.max = this.duration;
-			for(let j in arrAwl) {
+			for(var j in arrAwl) {
 				arrAwl[j].className = "audio_word_line";
 			}
 			audioWordCase.style.top =(awh / 2)+ "px";
@@ -99,7 +99,7 @@ function Audio(data) {
 						//						if(i > 0 && arrAwl[i - 1].classList.length == 2) {
 						//							arrAwl[i - 1].classList.remove("audio_word_line_show");
 						//						}
-						for(let j in arrAwl) {
+						for(var j in arrAwl) {
 							arrAwl[j].className = "audio_word_line";
 						}
 						arrAwl[i].classList.add("audio_word_line_show");
@@ -135,13 +135,7 @@ function Audio(data) {
 			//搜索的歌曲列表
 			audioSearchList:[],
 			//歌库列表
-			menuList:[{
-				FileHash:"ECD8A1E7C8BD5AA2717A670C274C0C8E",
-				geshou:"薛之谦、毛不易",
-				name:"消愁 (Live)",
-				ime:"2018江苏卫视跨年演唱会",
-				time:"未知"
-			}],
+			menuList:[],
 			//当前播放歌曲的信息
 			newAudioData:{
 				song_name:"rabiitAudio",		//歌曲名称
