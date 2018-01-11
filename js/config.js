@@ -4,7 +4,7 @@ var AUDIO_ID = { //歌曲id
 	RANGE : document.getElementById("range"),//进度条
 	PLAYING : document.getElementById("playing"),//播放按钮
 	ONTIME : document.getElementById("audioOnTime"),
-	WORD:document.querySelector(".audio_word_line")
+	WORD:document.querySelector("#audioWord")
 };
 var USER = {//用户
 	NAME:"游客",
@@ -28,7 +28,7 @@ function ajax(file){
 };
 //毫秒换算
 function zhuanhua(hm){
-	hm = Math.floor(hm/1000);
+	hm = Math.floor(hm);
 	var m = hm%60;
 	if(m<10) m  = "0"+m;
 	return Math.floor(hm/60)+":"+m;

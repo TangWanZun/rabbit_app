@@ -287,8 +287,8 @@ body {
 	left: calc( 10vw - 40px );
 	width: 80px;
 	height: 80px;
-	background-image: url(../image/audioPlay.png);
 	background-size: 99%;
+	background-repeat: no-repeat;
 }
 .qiege-break{
 	position: absolute;
@@ -392,11 +392,14 @@ body {
 
 .audio-icon {
 	width: 100%;
-	height: 10vh;
+	height: calc((100vh - 70vw - 230px)/3);
 	color: white;
 	font-size: 3.5vh;
 	text-align: center;
-	line-height: 10vh;
+	line-height: calc((100vh - 70vw - 230px)/3);
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 
@@ -577,7 +580,14 @@ body {
 	width: 100%;
 	height: calc( 100vh - 200px );
 	overflow: auto;
-	border:1px solid;
+	/* border:1px solid; */
+	position:relative;
+}
+.audio_word_case{
+	width: 100%;
+	position: absolute;
+	top: 0px;
+	transition: top 0.5s ease;
 }
 .audio_word_line{
 	overflow: hidden;
@@ -587,11 +597,13 @@ body {
 	text-align:center;
 	color:rgba(255, 255, 255, 0.8);
 	font-size:20px;
-	height: 35px;
-	line-height: 35px;
+	height: 50px;
+	line-height: 50px;
+	transition:0.5s ease;
 }
 .audio_word_line_show{
-	color:#007AFF;	
+	color: #42f4f0;
+	font-size:25px;
 }
 /* 输入框默认提示字体颜色 */
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
@@ -612,10 +624,11 @@ input::-webkit-input-placeholder{
 /*自定义进度条*/
 input[type="range"]{
   -webkit-appearance: none;
-  overflow:hidden;  
+  overflow:hidden;
   height:20px;
-  outline : none;   
+  outline : none;
   background:none;
+  width:;
 }
 input[type="range"]::-webkit-slider-thumb{
   -webkit-appearance: none;

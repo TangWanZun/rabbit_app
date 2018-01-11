@@ -47,68 +47,10 @@ var myaudio = document.getElementById("myaudio");
 //		this.className = "audioPlay-4";
 //	}
 //};
-function Audio(data){
-	//获取进度条
-	this.range = AUDIO_ID.RANGE;
-	//获取播放器
-	this.myaudio = AUDIO_ID.BFQ;
-	//
-	this.audioWord = AUDIO_ID.WORD;
-	//获取歌词集
-	this.lyrics =data.lyrics;
-	//歌词时间
-	this.lyricsTime = [];
-	this.parrer=/\[[0-9]{2}\:[0-9]{2}\.[0-9]{2}\]/g;
-	// 解析歌词
-	this.getAudioWord = function(){ 
-		var time = this.lyrics.match(this.parrer);
-		for (var i = 0; i < time.length; i++) {
-			var t = time[i].slice(1, -1).split(':');  
-		 	this.lyricsTime[i] = parseInt(t[0],10)*60 + parseFloat(t[1],10);
-		 	t = null;
- 		}
-		var ly = this.lyrics.split(this.parrer);
-		ly.splice(0,1);
-		return {"lyrics":ly,"lyrics_time":this.lyricsTime};
-	};
-	this.synAudioWord = function() {
-		var thio = this;
-		this.myaudio.oncanplay = function() {
-			thio.range.max = this.duration;
-		}
-		this.myaudio.ontimeupdate = function() {
-			thio.range.value = this.currentTime;
-//			thio.audioOnTime.innerHTML = zhuanhua(this.currentTime);
-//			if(thio.Ong.style.display == "block") {
-				var awh = thio.audioWord.offsetHeight;
-				var awlh = thio.arrAwl[0].offsetHeight;
-				for(var i = 0; i < thio.lyricsTime.length; i++) {
-					if(this.currentTime > thio.lyricsTime[i] && this.currentTime < thio.lyricsTime[i + 1]) {
-						if(i > 0 && thio.arrAwl[i - 1].classList.length == 2) {
-							thio.arrAwl[i - 1].classList.remove("audio_word_line_show");
-						}
-						thio.arrAwl[i].classList.add("audio_word_line_show");
-						thio.audioWordCase.style.top = -((i + 1) * (awlh + 15) - awh / 2) + "px";
-						break;
-					}
-				}
-//			}
-		};
-		this.range.addEventListener("change", function() {
-			try {
-				thio.myaudio.currentTime = this.value;
-				for(var i = 0; i < thio.time2.length; i++) {
-					if(thio.arrAwl[i].classList.length == 2) {
-						thio.arrAwl[i].classList.remove("audio-word-line-show");
-					}
-				}
-			} catch(e) {}
-		})
-	};
-}
+
 
 // 歌曲设置
-function Audiodebug(data,domID){
+function Audiodebug(data,domID,fun){
 	this.lyrics =data.lyrics;
 //	this.play_url = data.play_url;
 	this.parrer=/\[[0-9]{2}\:[0-9]{2}\.[0-9]{2}\]/g;
@@ -144,9 +86,11 @@ function Audiodebug(data,domID){
 //	 同步歌词''
 	this.synAudioWord = function(){
 		var thio = this;
+		//播放开始
 		this.myaudio.oncanplay = function(){
 			thio.range.max = this.duration;
 		}
+		//播放进行中
 		this.myaudio.ontimeupdate = function(){
 			thio.range.value =this.currentTime;
 			thio.audioOnTime.innerHTML =zhuanhua(Math.floor(this.currentTime));
@@ -163,6 +107,7 @@ function Audiodebug(data,domID){
 				}
 			}
 		};
+
 		this.range.addEventListener("change",function(){
 			try{
 				thio.myaudio.currentTime = this.value;
