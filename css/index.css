@@ -430,7 +430,10 @@ body {
 	color: white;
 	font-weight: bolder;
 }
-
+/* 删除图标 */
+.mytrash{
+	font-size: 35px;
+}
 .audioList-name {
 	width: 80%;
 	height: 30px;

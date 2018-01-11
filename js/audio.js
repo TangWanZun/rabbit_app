@@ -213,6 +213,14 @@ function Audio(data) {
 				if(this.newAudioPlay+n>this.menuList.length){this.audioPlay(0);this.newAudioPlay=1;return;}
 				this.newAudioPlay = this.newAudioPlay+n;
 				this.audioPlay(this.newAudioPlay-1);
+			},
+			//歌单音乐删除
+			audioDelect:function(n){
+				this.menuList.splice(n,1);
+				mui.toast("歌曲已删除", {
+					duration: 'short',
+					type: 'div'
+				});
 			}
 		}
 	});

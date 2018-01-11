@@ -142,7 +142,7 @@
 						<div class="mui-slider-item">
 							<div id="gedan" class="gedan">
 								<div v-for="(value,index) in menuList"  class="audioList-box" @click="audioPlay(index)">
-									<div class="audioList-zx"><p class="mui-icon mui-icon-bars"></p></div>
+									<div class="audioList-zx" @click.stop="audioDelect(index)"><p class="mui-icon mui-icon-trash mytrash"></p></div>
 									<div class="audioList-name">{{value.name}}</div>
 									<div class="audioList-bottom">
 										<div class="audioList-geshou">{{value.geshou}}</div>
