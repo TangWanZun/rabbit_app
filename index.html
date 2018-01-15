@@ -164,14 +164,19 @@
 							</div>
 						</div>
 						<!--歌词-->
-						<div class="mui-slider-item">
-							<div id="audioWord" class="audioWord">
+						<div class="mui-slider-item" >
+							<div id="audioWord" class="audioWord" style="overflow:hidden">
 								<div class="audio_word_case">
 									<div class="audio_word_line" v-for="value in newAudioData.lyrics">{{value}}</div>									
 								</div>
 							</div>
 						</div>
 					</div>
+				</div>
+				<div class="paging_box">
+					<div :class="['paging',{'paing_show':pagingShowClass==0}]"></div>
+					<div :class="['paging',{'paing_show':pagingShowClass==1}]"></div>
+					<div :class="['paging',{'paing_show':pagingShowClass==2}]"></div>
 				</div>
 			</div>
 			<div class="bottom-title-box">
@@ -222,5 +227,5 @@
 	</div>
 </body>
 <script type="text/javascript" src="js/config.js" ></script>
-<script type="text/javascript" src="js/audio.js" ></script>
+<script type="text/javascript" src="js/main.js" ></script>
 </html>

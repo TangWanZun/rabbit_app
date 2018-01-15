@@ -322,7 +322,7 @@ body {
 	width: 100vw;
 	height: calc( 100vh - 190px );
 	/*background-color: red;*/
-	top: 70px;
+	top: 60px;
 	left: 0px;
 }
 .main_box_blur{
@@ -607,6 +607,24 @@ body {
 .audio_word_line_show{
 	color: #42f4f0;
 	font-size:25px;
+}
+/* 当前选项卡提示位置 */
+.paging_box{
+	width:100vw;
+	height:2px;
+	position:absolute;
+	top:0px;
+	left:0px;
+	overflow:hidden;
+}
+.paging{
+	height:100%;
+	width:33.33%;
+	float:left;
+	background-color:rgba(0, 0, 0, 0.4);
+}
+.paing_show{
+	background-color:white;
 }
 /* 输入框默认提示字体颜色 */
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
